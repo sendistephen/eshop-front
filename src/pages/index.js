@@ -1,0 +1,13 @@
+export { default as Home } from './Home';
+export { default as Signup } from './Signup';
+export { default as Signin } from './Signin';
+export { default as Dashboard } from './Dashboard';
+export { default as AdminDashboard } from './AdminDashboard';
+export { default as CreateCategory } from './CreateCategory';
+export { default as CreateProduct } from './CreateProduct';
+export { default as UpdateProduct } from './UpdateProduct';
+export { default as ProductDetails } from './ProductDetails';
+export { default as Cart } from './Cart';
+export { default as Orders } from './Orders';
+export { default as Profile } from './User/Profile';
+export { default as ManageProducts } from './ManageProducts/ManageProducts';
