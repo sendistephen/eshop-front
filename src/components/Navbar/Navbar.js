@@ -1,6 +1,6 @@
+import React from 'react';
 import { isAuthenticated, signout } from 'api/auth';
 import { itemTotal } from 'components/Cart/CartHelpers';
-import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { isActive } from 'utils';
 
@@ -54,7 +54,6 @@ function Navbar({ history }) {
                 Cart <span className='badge bg-secondary'>{itemTotal()}</span>
               </Link>
             </li>
-
             {isAuthenticated() && isAuthenticated().foundUser.role === 0 && (
               <li className='nav-item'>
                 <Link
