@@ -1,7 +1,11 @@
 import { isAuthenticated, signup } from 'api/auth';
-import { Layout } from 'components';
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { ErrorMessage } from '@hookform/error-message';
+import { useToasts } from 'react-toast-notifications';
+import LoginCover from 'assets/bg-image.png';
+import Logo from 'assets/LOGO.png';
 
 function Signup() {
   const [values, setValues] = useState({
@@ -11,100 +15,202 @@ function Signup() {
     error: '',
     success: '',
   });
-  const { name, email, password, error, success } = values;
+  const { addToast } = useToasts();
 
-  const handleChange = (name) => (e) => {
-    setValues({ ...values, error: false, [name]: e.target.value });
-  };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    signup({ name, email, password }).then((data) => {
+  const onSubmit = (data) => {
+    signup(data).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error, success: false });
-      } else {
-        setValues({
-          ...values,
-          name: '',
-          email: '',
-          password: '',
-          error: '',
-          success: true,
+        addToast(data.error, {
+          appearance: 'error',
+          autoDismiss: true,
         });
+      } else {
+        addToast('Congrats! Account created successfully! Please sign in.', {
+          appearance: 'success',
+          autoDismiss: true,
+        });
+        reset();
       }
     });
   };
 
-  const signupForm = () => (
-    <form onSubmit={handleSubmit}>
-      <div className='form-group'>
-        <label htmlFor='name' className='text-muted'>
-          Name
-        </label>
-        <input
-          onChange={handleChange('name')}
-          value={name}
-          type='text'
-          className='form-control'
-        />
-      </div>
-      <div className='form-group mt-2'>
-        <label htmlFor='email' className='text-muted'>
-          Email
-        </label>
-        <input
-          onChange={handleChange('email')}
-          value={email}
-          type='email'
-          className='form-control'
-        />
-      </div>
-      <div className='form-group mt-2'>
-        <label htmlFor='password' className='text-muted'>
-          Password
-        </label>
-        <input
-          onChange={handleChange('password')}
-          value={password}
-          type='password'
-          className='form-control'
-        />
-      </div>
-      <button className='btn btn-primary mt-3'>Sign up</button>
-    </form>
-  );
-  const showError = () => (
-    <div
-      className='alert alert-danger'
-      style={{ display: error ? '' : 'none' }}
-    >
-      {error}
-    </div>
-  );
-  const showSuccess = () => (
-    <div
-      className='alert alert-success'
-      style={{ display: success ? '' : 'none' }}
-    >
-      Congrats! New Account is created. Please signin.
-    </div>
-  );
   const redirectUser = () => {
     if (isAuthenticated()) {
       return <Redirect to='/' />;
     }
   };
   return (
-    <Layout
-      title='Signup'
-      description='Register for an account to get started'
-      className='container col-md-4 offset-md-4'
-    >
-      {showError()}
-      {showSuccess()}
-      {signupForm()}
+    <>
       {redirectUser()}
-    </Layout>
+      <div
+        className='h-full w-full bg-no-repeat bg-fixed bg-cover bg-center md:h-screen md:overflow-y-auto'
+        style={{
+          backgroundImage: `url(${LoginCover})`,
+        }}
+      >
+        <div className='p-8 md:mx-auto md:max-w-6xl md:h-full'>
+          {/* logo */}
+          <div className='flex flex-col justify-center items-center md:flex md:justify-start md:items-start'>
+            <img
+              className='h-18 w-18 md:h-16 md:w-16'
+              src={Logo}
+              alt='eDuuka'
+            />
+          </div>
+          <div className='pt-10 md:grid md:grid-cols-2 w-full'>
+            {/* content side */}
+            <div className='w-full md:flex md:flex-col md:justify-center'>
+              <h1 className='font-black text-4xl leading-snug text-center md:text-left '>
+                Fast & Free Store Pickup
+              </h1>
+              <p className='font-medium mt-4 mb-6 text-base'>
+                Get your order delivered to your door step in just{' '}
+                <span className='font-bold'>1 HOUR OR LESS!</span>
+              </p>
+            </div>
+            {/* login form */}
+            <div className='w-full bg-white py-8 px-6 shadow-2xl rounded-xl'>
+              <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
+                <p className='text-center text-xl font-medium text-gray-900'>
+                  Create eDuuka account to get started.
+                </p>
+                <div>
+                  <label
+                    htmlFor='username'
+                    className='block text-sm font-medium text-gray-900'
+                  >
+                    Username
+                  </label>
+                  <div className='mt-1'>
+                    <input
+                      {...register('name', {
+                        required: 'Username is required',
+                        minLength: {
+                          value: 3,
+                          message: 'Username must be atleast 3 characters',
+                        },
+                      })}
+                      type='text'
+                      className='form-input rounded-lg w-full border-gray-300 shadow-sm focus:outline-none focus:border-black focus:ring-black placeholder-gray-400 text-sm'
+                      name='name'
+                      id='username'
+                      placeholder='Username e.g Stephen'
+                    />
+                    <ErrorMessage
+                      errors={errors}
+                      name='name'
+                      render={({ message }) => (
+                        <p className='text-sm text-red-400 font-medium'>
+                          {message}
+                        </p>
+                      )}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label
+                    htmlFor='email'
+                    className='block text-sm font-medium text-gray-900'
+                  >
+                    Account
+                  </label>
+                  <div className='mt-1'>
+                    <input
+                      {...register('email', {
+                        required: 'Email is required',
+                        minLength: {
+                          value: 6,
+                          message: 'Email must be atleast 6 characters',
+                        },
+                      })}
+                      type='email'
+                      className='form-input rounded-lg w-full border-gray-300 shadow-sm focus:outline-none focus:border-black focus:ring-black placeholder-gray-400 text-sm'
+                      name='email'
+                      id='email'
+                      placeholder='Email Address'
+                    />
+                    <ErrorMessage
+                      errors={errors}
+                      name='email'
+                      render={({ message }) => (
+                        <p className='text-sm text-red-400 font-medium'>
+                          {message}
+                        </p>
+                      )}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label
+                    htmlFor='password'
+                    className='block text-sm font-medium text-gray-900'
+                  >
+                    Password
+                  </label>
+                  <div className='mt-1'>
+                    <input
+                      {...register('password', {
+                        required: 'Password is required',
+                        minLength: {
+                          value: 6,
+                          message: 'Password must be atleast 6 characters',
+                        },
+                      })}
+                      type='password'
+                      className='form-input rounded-lg w-full border-gray-300 shadow-sm focus:outline-none focus:border-black focus:ring-black placeholder-gray-400 text-sm'
+                      id='password'
+                      placeholder='Password'
+                    />
+                    <ErrorMessage
+                      errors={errors}
+                      name='password'
+                      render={({ message }) => (
+                        <p className='text-sm text-red-400 font-medium'>
+                          {message}
+                        </p>
+                      )}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <input
+                    type='submit'
+                    className='w-full py-2 px-4 rounded bg-gray-800 hover:bg-gray-900 text-white
+                border border-transparent text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500
+                '
+                    value='Sign Up'
+                  />
+                </div>
+                <div>
+                  <p className='text-gray-900 text-base'>
+                    Have eDuuka account?{' '}
+                    <Link
+                      to='/signin'
+                      className='text-sm font-semibold text-blue-500'
+                    >
+                      Sigin now
+                    </Link>
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+          <footer className='text-center pt-20 md:pt-24'>
+            <span className='text-sm text-white font-medium'>
+              &copy;2021 eDuuka. All rights reversed.
+            </span>
+          </footer>
+        </div>
+      </div>
+    </>
   );
 }
 
