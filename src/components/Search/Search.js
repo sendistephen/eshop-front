@@ -70,32 +70,36 @@ export default function Search() {
       return 'No products found';
     }
   };
-  const searchForm = () => (
-    <form onSubmit={handleSubmit} className='mb-3'>
-      <span className='input-group-text'>
-        <div className='input-group input-group-lg'>
-          <div className='input-group-prepend'>
-            <select className='btn m-2' onChange={handleChange('category')}>
-              <option value='All'>All</option>
-              {categories.map((c, i) => (
-                <option key={i} value={c._id}>
-                  {c.name}
-                </option>
-              ))}
-            </select>
-          </div>
 
-          <input
-            type='search'
-            className='form-control'
-            onChange={handleChange('search')}
-            placeholder='Search by name'
-          />
+  const searchForm = () => (
+    <form onSubmit={handleSubmit} className=''>
+      <div className='relative '>
+        <div className='absolute inset-y-0 left-0 flex items-center rounded-md'>
+          <label htmlFor='category' className='sr-only'>
+            Category
+          </label>
+          <select
+            onChange={handleChange('category')}
+            className='text-sm focus:ring-green-400 focus:border-green-400 h-full py-0 border-transparent bg-transparent text-gray-500 rounded-md'
+            name='category'
+            id='category'
+          >
+            <option value='All'>All</option>
+            {categories.map((c, i) => (
+              <option key={i} value={c._id}>
+                {c.name}
+              </option>
+            ))}
+          </select>
         </div>
-        <div className='btn input-group-append' style={{ border: 'none' }}>
-          <button className='input-group-text'>Search</button>
-        </div>
-      </span>
+        <input
+          onChange={handleChange('search')}
+          className='pl-32 md:pl-36 focus:ring-green-400 focus:border-green-400 block w-full border-gray-300 rounded-md text-sm'
+          type='text'
+          name=''
+          placeholder='Search by product name'
+        />
+      </div>
     </form>
   );
   return (

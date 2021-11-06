@@ -1,8 +1,8 @@
 export const isActive = (history, path) => {
   if (history.location.pathname === path) {
-    return { color: '#ff9900' };
+    return { color: '#87C327' };
   }
-  return { color: '#fff' };
+  return { color: '#000' };
 };
 
 export const prices = [

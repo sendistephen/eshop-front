@@ -3,11 +3,11 @@ import React from 'react';
 
 const ProductImage = ({ item, url }) => {
   return (
-    <div className='product-img'>
+    <div className='relative pb-64'>
       <img
+        className='absolute h-full w-full'
         src={`${API}/${url}/photo/${item._id}`}
         alt={item.name}
-        className='mb-3 card-img-top'
       />
     </div>
   );

@@ -4,7 +4,7 @@ import { Routes } from 'Routes';
 
 function App() {
   return (
-    <div>
+    <div className='bg-gray-100'>
       <Router>
         <Routes />
       </Router>

@@ -59,11 +59,13 @@ function Signup() {
         <div className='p-8 md:mx-auto md:max-w-6xl md:h-full'>
           {/* logo */}
           <div className='flex flex-col justify-center items-center md:flex md:justify-start md:items-start'>
-            <img
-              className='h-18 w-18 md:h-16 md:w-16'
-              src={Logo}
-              alt='eDuuka'
-            />
+            <Link to='/'>
+              <img
+                className='h-18 w-18 md:h-16 md:w-16'
+                src={Logo}
+                alt='eDuuka'
+              />
+            </Link>
           </div>
           <div className='pt-10 md:grid md:grid-cols-2 w-full'>
             {/* content side */}

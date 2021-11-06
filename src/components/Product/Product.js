@@ -46,7 +46,7 @@ const Product = ({
       showAddToCartButton && (
         <button
           onClick={addToCart}
-          className='btn btn-sm btn-dark mt-2 mb-2 mr-2'
+          className='bg-yellow-400 text-black px-3 rounded-sm'
         >
           Add to cart{' '}
         </button>
@@ -81,9 +81,13 @@ const Product = ({
   };
   const showStock = (quantity) => {
     return quantity > 0 ? (
-      <span className='badge badge-success badge-pill'>In Stock</span>
+      <span className='inline-block tracking-wide uppercase text-xs font-semibold bg-green-800 text-green-100 rounded-full px-2'>
+        In Stock
+      </span>
     ) : (
-      <span className='badge badge-danger badge-pill'>Out of Stock</span>
+      <span className='inline-block tracking-wide uppercase text-xs font-semibold bg-red-800 text-red-100 rounded-full px-2'>
+        Out of Stock
+      </span>
     );
   };
   const addToCart = () => {
@@ -99,22 +103,18 @@ const Product = ({
   };
 
   return (
-    <div className='card'>
-      <div className='card-header name'>{product.name}</div>
-      <div className='card-body'>
-        {shouldRedirect(redirect)}
-        <ProductImage item={product} url='product' />
-        <p className='card-text lead'>{product.description.substring(0, 50)}</p>
-        <p className='card-text black-10'>$ {product.price}</p>
-        <div className=''>
-          <span className='mr-2 block'>Category</span>
-          <span className='badge bg-light text-dark'>
-            {product.category && product.category.name}
-          </span>
-        </div>
-        <p className='black-8 my-2'>
-          Added {moment(product.createdAt).fromNow()}
+    <div className='bg-white border rounded-lg overflow-hidden'>
+      {shouldRedirect(redirect)}
+      <ProductImage item={product} url='product' />
+
+      <div className='p-6'>
+        <h4 className='font-semibold text-lg leading-tight text-gray-900 truncate'>
+          {product.name}
+        </h4>
+        <p className='text-gray-600 leading-tight mt-1 text-sm'>
+          {product.description.substring(0, 80)}
         </p>
+        <span className='font-bold text-xl mt-1'>${product.price}</span>
         <div>{showStock(product.quantity)}</div>
         {showAddToCart(showAddToCartButton)}
         {showViewButton(showViewProductButton)}

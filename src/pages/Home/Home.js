@@ -1,10 +1,12 @@
-import { fetchAllProducts } from 'api/product';
-import { Layout, Product, Search } from 'components';
 import React, { useState, useEffect } from 'react';
+import { fetchAllProducts } from 'api/product';
+import { Header, Navbar, Product } from 'components';
+import Hero from 'assets/HERO.jpg';
 
-function Home() {
+function Home({ history }) {
   const [productsBySell, setProductsBySell] = useState([]);
   const [productsByArrival, setProductsByArrival] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState(false);
 
   const loadProductsBySell = () => {
@@ -31,30 +33,51 @@ function Home() {
   }, []);
 
   return (
-    <Layout
-      className='container'
-      title='Home Page'
-      description='Shoppers online Ecommerce'
-    >
-      <Search />
-      <h3 className='mb-4'>Best Sellers</h3>
-      <div className='row'>
-        {productsBySell.map((product, index) => (
-          <div className='col-md-4 mb-3' key={index}>
-            <Product product={product} />
-          </div>
-        ))}
+    <div className=''>
+      {/* Header Component */}
+      <Header />
+      {/* Navbar Component */}
+      <Navbar />
+      {/* home */}
+      <div
+        className='px-4 py-4 bg-green-400 text-white w-full h-full bg-no-repeat bg-cover bg-center bg-blend-multiply md:bg-blend-normal md:py-36 md:text-center'
+        style={{ backgroundImage: `url(${Hero})` }}
+      >
+        <div>
+          <h1 className='text-3xl font-bold md:text-7xl md:py-3'>
+            Shop <span className='text-xl md:text-4xl'>&</span> Save
+          </h1>
+          <p className='text-base font-normal md:text-4xl'>
+            Up to 50% OFF on all grocery items
+          </p>
+        </div>
+        <button className='bg-black text-white rounded-sm text-sm p-2 mt-2 font-medium md:p-4 md:rounded-md md:mt-4'>
+          Shop Now!
+        </button>
       </div>
 
-      <h3 className='mb-4'>New Arrivals</h3>
-      <div className='row'>
-        {productsByArrival.map((product, index) => (
-          <div className='col-md-4 mb-3' key={index}>
+      <div className='mt-8 px-4 py-4'>
+        <h1 className='font-bold text-2xl text-center'>Top Picks</h1>
+        {/* TODO: Best sellers */}
+
+        <div className='mt-8 grid grid-cols-1 gap-y-4 md:grid-cols-3 md:gap-x-4 lg:grid-cols-4'>
+          {productsBySell.map((product, index) => (
             <Product key={index} product={product} />
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </Layout>
+      {/* New Arrivals */}
+      <div className='mt-8 px-4 py-4'>
+        <h1 className='font-bold text-2xl text-center'>New Arrivals</h1>
+        {/* TODO: Best sellers */}
+
+        <div className='mt-8 grid grid-cols-1 gap-y-4 md:grid-cols-3 md:gap-x-4 lg:grid-cols-4'>
+          {productsByArrival.map((product, index) => (
+            <Product key={index} product={product} />
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 
