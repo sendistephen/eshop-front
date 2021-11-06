@@ -1,7 +1,6 @@
 import ProductImage from 'components/ProductImage';
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import moment from 'moment';
 import {
   addProductToCart,
   updateItem,
@@ -22,8 +21,8 @@ const Product = ({
     return (
       showViewProductButton && (
         <Link to={`/products/${product._id}`}>
-          <button className='btn btn-success btn-sm  mt-2 mb-2'>
-            View Details
+          <button className='font-norma text-gray-600 px-3 rounded-sm py-2 border border-1 border-pink-500 hover:bg-pink-500 hover:text-white '>
+            Details
           </button>
         </Link>
       )
@@ -34,7 +33,7 @@ const Product = ({
       showRemoveProductButton && (
         <button
           onClick={() => removeItem(product._id)}
-          className='btn btn-danger btn-sm  mt-2 mb-2'
+          className='font-normal text-gray-600 px-3 rounded-sm py-2 border border-1 border-red-400 hover:bg-red-500 hover:text-white '
         >
           Remove Product
         </button>
@@ -46,7 +45,7 @@ const Product = ({
       showAddToCartButton && (
         <button
           onClick={addToCart}
-          className='bg-yellow-400 text-black px-3 rounded-sm'
+          className=' font-normal text-gray-600 px-3 rounded-sm py-2 border border-1 border-yellow-400 hover:bg-yellow-400 hover:text-black'
         >
           Add to cart{' '}
         </button>
@@ -81,9 +80,9 @@ const Product = ({
   };
   const showStock = (quantity) => {
     return quantity > 0 ? (
-      <span className='inline-block tracking-wide uppercase text-xs font-semibold bg-green-800 text-green-100 rounded-full px-2'>
+      <p className='inline-block tracking-wide uppercase text-xs font-semibold bg-green-800 text-green-100 rounded-full px-2'>
         In Stock
-      </span>
+      </p>
     ) : (
       <span className='inline-block tracking-wide uppercase text-xs font-semibold bg-red-800 text-red-100 rounded-full px-2'>
         Out of Stock
@@ -116,10 +115,12 @@ const Product = ({
         </p>
         <span className='font-bold text-xl mt-1'>${product.price}</span>
         <div>{showStock(product.quantity)}</div>
-        {showAddToCart(showAddToCartButton)}
-        {showViewButton(showViewProductButton)}
-        {showRemoveButton(showRemoveProductButton)}
-        {showCardUpdateOptions(cartUpdate)}
+        <div className='flex justify-between items-center text-sm mt-2'>
+          {showAddToCart(showAddToCartButton)}
+          {showViewButton(showViewProductButton)}
+          {showRemoveButton(showRemoveProductButton)}
+          {showCardUpdateOptions(cartUpdate)}
+        </div>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchAllProducts } from 'api/product';
 import { Header, Navbar, Product } from 'components';
 import Hero from 'assets/HERO.jpg';
+import { Link } from 'react-router-dom';
 
 function Home({ history }) {
   const [productsBySell, setProductsBySell] = useState([]);
@@ -51,9 +52,12 @@ function Home({ history }) {
             Up to 50% OFF on all grocery items
           </p>
         </div>
-        <button className='bg-black text-white rounded-sm text-sm p-2 mt-2 font-medium md:p-4 md:rounded-md md:mt-4'>
+        <Link
+          to='/shop'
+          className='bg-black text-white rounded-sm text-sm p-2 mt-2 font-medium md:p-4 md:rounded-md md:mt-4'
+        >
           Shop Now!
-        </button>
+        </Link>
       </div>
 
       <div className='mt-8 px-4 py-4'>
