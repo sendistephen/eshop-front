@@ -79,7 +79,7 @@ const Checkout = ({ products }) => {
           />
           <button
             onClick={buy}
-            className='shadow-lg bg-purple-400 py-2 text-purple-100 px-4 rounded text-sm hover:bg-purple-500'
+            className='shadow-lg bg-purple-400 py-2 text-purple-100 px-4 rounded text-sm hover:bg-purple-500 mt-2'
           >
             Confirm
           </button>
@@ -94,7 +94,6 @@ const Checkout = ({ products }) => {
     // nonce=data.instance.requestPaymentMethod()
 
     let nonce;
-    // eslint-disable-next-line no-unused-vars
     let getNonce = data.instance
       .requestPaymentMethod()
       .then((data) => {
@@ -137,10 +136,10 @@ const Checkout = ({ products }) => {
       });
   };
   const showLoading = (loading) =>
-    loading && <p className='lead'>Loading...</p>;
+    loading && <p className='font-light text-blue-400'>Loading...</p>;
   const showError = (error) => (
     <div
-      className='alert alert-danger'
+      className='py-1 bg-red-300 text-gray-900 px-2'
       style={{ display: error ? '' : 'none' }}
     >
       {error}
@@ -148,10 +147,10 @@ const Checkout = ({ products }) => {
   );
   const showMsg = (success) => (
     <div
-      className='alert alert-success'
+      className='py-1 bg-green-300 text-gray-900 px-2'
       style={{ display: success ? '' : 'none' }}
     >
-      Thanks! Your payment was successfull!
+      Thanks! Your payment is completed!
     </div>
   );
   return (
