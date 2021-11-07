@@ -76,7 +76,7 @@ export const listRelated = async (productId) => {
 // get all products
 export const getProducts = async () => {
   try {
-    const res = await fetch('${API}/products?limit=undefined', {
+    const res = await fetch(`${API}/products?limit=undefined`, {
       method: 'GET',
     });
     return res.json();

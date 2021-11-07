@@ -5,7 +5,7 @@ const ProductImage = ({ item, url }) => {
   return (
     <div className='relative pb-64'>
       <img
-        className='absolute h-full w-full'
+        className='absolute h-full w-full object-contain'
         src={`${API}/${url}/photo/${item._id}`}
         alt={item.name}
       />

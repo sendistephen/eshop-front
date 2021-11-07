@@ -21,34 +21,34 @@ const Product = ({
     return (
       showViewProductButton && (
         <Link to={`/products/${product._id}`}>
-          <button className='font-norma text-gray-600 px-3 rounded-sm py-2 border border-1 border-pink-500 hover:bg-pink-500 hover:text-white '>
+          <div className='font-normal text-gray-600 px-3 py-1 rounded-sm  border border-1 border-pink-500 hover:bg-pink-500 hover:text-white '>
             Details
-          </button>
+          </div>
         </Link>
       )
     );
   };
-  const showRemoveButton = (showRemoveProductButton) => {
+  const  showRemoveButton = (showRemoveProductButton) => {
     return (
       showRemoveProductButton && (
-        <button
+        <div
           onClick={() => removeItem(product._id)}
           className='font-normal text-gray-600 px-3 rounded-sm py-2 border border-1 border-red-400 hover:bg-red-500 hover:text-white '
         >
           Remove Product
-        </button>
+        </div>
       )
     );
   };
   const showAddToCart = (showAddToCartButton) => {
     return (
       showAddToCartButton && (
-        <button
+        <div
           onClick={addToCart}
-          className=' font-normal text-gray-600 px-3 rounded-sm py-2 border border-1 border-yellow-400 hover:bg-yellow-400 hover:text-black'
+          className=' font-normal text-gray-600 px-3 rounded-sm py-1 border border-1 border-yellow-400 hover:bg-yellow-400 hover:text-black'
         >
           Add to cart{' '}
-        </button>
+        </div>
       )
     );
   };
@@ -70,7 +70,7 @@ const Product = ({
               value={count}
               onChange={handleChange(product._id)}
               type='number'
-              className='form-control'
+              className=''
               name=''
             />
           </div>
@@ -102,7 +102,7 @@ const Product = ({
   };
 
   return (
-    <div className='bg-white border rounded-lg overflow-hidden'>
+    <div className='overflow-hidden border rounded-lg bg-white shadow'>
       {shouldRedirect(redirect)}
       <ProductImage item={product} url='product' />
 
@@ -110,8 +110,8 @@ const Product = ({
         <h4 className='font-semibold text-lg leading-tight text-gray-900 truncate'>
           {product.name}
         </h4>
-        <p className='text-gray-600 leading-tight mt-1 text-sm'>
-          {product.description.substring(0, 80)}
+        <p className='text-gray-600 leading-tight mt-1 text-sm truncate'>
+          {product.description}
         </p>
         <span className='font-bold text-xl mt-1'>${product.price}</span>
         <div>{showStock(product.quantity)}</div>

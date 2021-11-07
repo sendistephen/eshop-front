@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchAllProducts } from 'api/product';
-import { Header, Navbar, Product } from 'components';
+import { Product } from 'components';
 import Hero from 'assets/HERO.jpg';
 import { Link } from 'react-router-dom';
 
@@ -35,16 +35,11 @@ function Home({ history }) {
 
   return (
     <div className=''>
-      {/* Header Component */}
-      <Header />
-      {/* Navbar Component */}
-      <Navbar />
-      {/* home */}
       <div
-        className='px-4 py-4 bg-green-400 text-white w-full h-full bg-no-repeat bg-cover bg-center bg-blend-multiply md:bg-blend-normal md:py-36 md:text-center'
+        className='px-8 py-4 bg-green-400 text-white w-full h-full bg-no-repeat bg-cover bg-center bg-blend-multiply md:bg-blend-normal md:py-32 md:text-center'
         style={{ backgroundImage: `url(${Hero})` }}
       >
-        <div>
+        <div className='mb-6'>
           <h1 className='text-3xl font-bold md:text-7xl md:py-3'>
             Shop <span className='text-xl md:text-4xl'>&</span> Save
           </h1>
@@ -54,16 +49,14 @@ function Home({ history }) {
         </div>
         <Link
           to='/shop'
-          className='bg-black text-white rounded-sm text-sm p-2 mt-2 font-medium md:p-4 md:rounded-md md:mt-4'
+          className='bg-black text-white rounded-sm text-sm p-2 mt-2 font-medium md:p-4 md:rounded-md'
         >
           Shop Now!
         </Link>
       </div>
 
-      <div className='mt-8 px-4 py-4'>
+      <div className='mt-8 px-8 py-4'>
         <h1 className='font-bold text-2xl text-center'>Top Picks</h1>
-        {/* TODO: Best sellers */}
-
         <div className='mt-8 grid grid-cols-1 gap-y-4 md:grid-cols-3 md:gap-x-4 lg:grid-cols-4'>
           {productsBySell.map((product, index) => (
             <Product key={index} product={product} />
@@ -73,8 +66,6 @@ function Home({ history }) {
       {/* New Arrivals */}
       <div className='mt-8 px-4 py-4'>
         <h1 className='font-bold text-2xl text-center'>New Arrivals</h1>
-        {/* TODO: Best sellers */}
-
         <div className='mt-8 grid grid-cols-1 gap-y-4 md:grid-cols-3 md:gap-x-4 lg:grid-cols-4'>
           {productsByArrival.map((product, index) => (
             <Product key={index} product={product} />

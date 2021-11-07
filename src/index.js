@@ -7,9 +7,15 @@ import './styles.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ToastProvider autoDismiss autoDismissTimeout={6000} placement='top-right'>
-      <App />
-    </ToastProvider>
+    <div className='h-full w-full'>
+      <ToastProvider
+        autoDismiss
+        autoDismissTimeout={6000}
+        placement='top-right'
+      >
+        <App />
+      </ToastProvider>
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -14,7 +14,7 @@ import { Search } from 'components';
 
 function Navbar({ history }) {
   return (
-    <nav className='my-4 px-4 flex justify-between items-center w-full'>
+    <nav className='my-4 px-8 flex justify-between items-center w-full'>
       <Link to='/' className='justify-start'>
         <img className='h-18 w-18 md:h-16 md:w-16' src={Logo} alt='eDuuka' />
       </Link>

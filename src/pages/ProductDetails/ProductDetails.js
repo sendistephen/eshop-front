@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
-import { read, listRelated } from 'api/product';
-import { Layout, Product } from 'components';
 import React, { useEffect, useState } from 'react';
+import { read, listRelated } from 'api/product';
+import { Product, ProductImage } from 'components';
 
 const ProductDetails = (props) => {
   const [product, setProduct] = useState({});
@@ -33,29 +33,25 @@ const ProductDetails = (props) => {
   }, [props]);
 
   return (
-    <Layout
-      title={product.name}
-      description={
-        product && product.description && product.description.substring(0, 100)
-      }
-      className='container'
-    >
-      <div className='row'>
-        <div className='col-md-8'>
-          {product && product.description && (
-            <Product product={product} showViewProductButton={false} />
-          )}
-        </div>
-        <div className='col-md-4'>
-          <h4>Related products</h4>
+    <>
+      <div className='px-8 mt-12'>
+        <Product
+          product={product}
+          url='product'
+          showViewProductButton={false}
+        />
+      </div>
+      <div className='mt-12 px-8'>
+        <h1 className='text-2xl font-bold mb-8 text-center'>
+          Related Products
+        </h1>
+        <div className='mb-3 grid grid-cols-1 gap-y-4 md:grid-cols-3 md:gap-x-4 lg:grid-cols-4'>
           {relatedProduct.map((product, i) => (
-            <div className='mb-3'>
-              <Product key={i} product={product} />
-            </div>
+            <Product key={i} product={product} />
           ))}
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 
