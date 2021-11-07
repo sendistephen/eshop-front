@@ -33,7 +33,7 @@ const Product = ({
       showRemoveProductButton && (
         <div
           onClick={() => removeItem(product._id)}
-          className='font-normal text-gray-600 px-3 rounded-sm py-2 border border-1 border-red-400 hover:bg-red-500 hover:text-white '
+          className='font-normal text-gray-600 px-3 rounded-sm py-1 border border-1 border-red-400 hover:bg-red-500 hover:text-white '
         >
           Remove Product
         </div>
@@ -70,7 +70,7 @@ const Product = ({
               value={count}
               onChange={handleChange(product._id)}
               type='number'
-              className=''
+              className='py-1 px-2 w-16 text-xs rounded'
               name=''
             />
           </div>

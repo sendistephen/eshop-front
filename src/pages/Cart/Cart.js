@@ -1,4 +1,4 @@
-import { Checkout, Layout, Product } from 'components';
+import { Checkout, Product } from 'components';
 import { getCart } from 'components/Cart/CartHelpers';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -12,8 +12,10 @@ const Cart = () => {
 
   const showItemsFromLs = () => {
     return (
-      <div>
-        <p className='lead'>Your cart has {`${items.length}`} item(s)</p>
+      <div className='w-10/12 grid grid-rows-flow gap-3'>
+        <p className='font-normal text-gray-600 my-3'>
+          Your cart has {`${items.length}`} item(s)
+        </p>
         <hr />
         {items.map((item, index) => (
           <Product
@@ -28,7 +30,7 @@ const Cart = () => {
     );
   };
   const notItemsMessage = () => {
-    <h4>
+    <h4 className='font-normal text-gray-600 my-3'>
       Your cart is empty.{' '}
       <br>
         <Link to='/shop'>Continue shopping</Link>
@@ -37,22 +39,17 @@ const Cart = () => {
   };
 
   return (
-    <Layout
-      title='Shopping Cart'
-      description='Manage your cart items. Add remove checkout or continue shopping.'
-      className='container'
-    >
-      <div className='row'>
-        <div className='col-md-6'>
-          {items.length > 0 ? showItemsFromLs() : notItemsMessage()}
-        </div>
-        <div className='col-md-6'>
+    <div className='px-8 mt-12'>
+      <h1 className='text-4xl font-bold'>Shopping Cart</h1>
+      <div className='flex'>
+        <span>{items.length > 0 ? showItemsFromLs() : notItemsMessage()}</span>
+        <div className='w-full'>
           <h4 className='mb-3'>Order Summary</h4>
-          <hr />
+          <hr className='border border-1 border-gray-100'/>
           <Checkout products={items} />
         </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 export default Cart;

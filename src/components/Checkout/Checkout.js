@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import 'braintree-web';
 import DropIn from 'braintree-web-drop-in-react';
 import { isAuthenticated } from 'api/auth';
-import { Link } from 'react-router-dom';
 import { getBraintreeClientToken, processPayment } from '../../api/braintree';
 import { emptyCart } from 'components/Cart/CartHelpers';
 import { createOrder } from 'api/order';
@@ -47,7 +47,9 @@ const Checkout = ({ products }) => {
       <div>{showDropIn()}</div>
     ) : (
       <Link to='/signin'>
-        <button className='btn btn-warning btn-sm'>Sign in to checkout</button>
+        <button className='mt-4 bg-purple-500 py-2 px-2 text-purple-100 hover:bg-purple-600 rounded'>
+          Sign in to checkout
+        </button>
       </Link>
     );
   };
@@ -55,11 +57,13 @@ const Checkout = ({ products }) => {
     <div onBlur={() => setData({ ...data, error: '' })}>
       {data.clientToken !== null && products.length > 0 ? (
         <div>
-          <div className='form-group mb-3'>
-            <label className='text-muted'>Delivery address:</label>
+          <div className='my-4'>
+            <label className='text-muted block text-left text-sm text-gray-700'>
+              Delivery address
+            </label>
             <textarea
               onChange={handleAddress}
-              className='form-control'
+              className='form-textarea w-full text-sm mt-2 block rounded focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400'
               value={data.address}
               placeholder='Type your delivery address here...'
             />
@@ -73,7 +77,10 @@ const Checkout = ({ products }) => {
             }}
             onInstance={(instance) => (data.instance = instance)}
           />
-          <button onClick={buy} className='btn btn-sm btn-danger'>
+          <button
+            onClick={buy}
+            className='shadow-lg bg-purple-400 py-2 text-purple-100 px-4 rounded text-sm hover:bg-purple-500'
+          >
             Confirm
           </button>
         </div>
@@ -87,6 +94,7 @@ const Checkout = ({ products }) => {
     // nonce=data.instance.requestPaymentMethod()
 
     let nonce;
+    // eslint-disable-next-line no-unused-vars
     let getNonce = data.instance
       .requestPaymentMethod()
       .then((data) => {
@@ -148,7 +156,11 @@ const Checkout = ({ products }) => {
   );
   return (
     <div>
-      <p className='lead'>Total: ${getTotal()}</p>
+      <div>
+        <span className='block font-light'>Total:</span>
+        <span className='text-4xl font-bold'>${getTotal()}</span>
+      </div>
+
       {showLoading(data.loading)}
       {showError(data.error)}
       {showMsg(data.success)}
