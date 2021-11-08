@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { getCategories } from 'api/category';
-import Layout from 'components/Layout';
 import Product from 'components/Product';
 import Checkbox from 'components/Checkbox';
 import RadioBox from 'components/RadioBox';
@@ -12,10 +11,12 @@ export default function Shop() {
   const [myFilters, setMyFilters] = useState({
     filters: { category: [], price: [] },
   });
+  // eslint-disable-next-line no-unused-vars
   const [limit, setLimit] = useState(6);
   const [skip, setSkip] = useState(0);
   const [size, setSize] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState(false);
 
   //   load categories from the api
