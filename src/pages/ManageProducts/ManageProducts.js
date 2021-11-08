@@ -1,8 +1,7 @@
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { isAuthenticated } from 'api/auth';
 import { deleteProduct, getProducts } from 'api/product';
-import { Layout } from 'components';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 const ManageProducts = () => {
   const [products, setProducts] = useState([]);
@@ -37,29 +36,31 @@ const ManageProducts = () => {
   }, []);
 
   return (
-    <Layout
-      title='Manage Products'
-      description='Perform CRUD operations'
-      className='container'
-    >
-      <div className='container'>
-        <div className='row'>
+    <>
+      <div className='px-8 '>
+        <div className='py-4 px-4 text-2xl font-bold bg-white rounded'>
+          <h1>Manage Products</h1>
+        </div>
+        <div className='bg-white px-4 py-4 mt-4'>
           <div className='col-md-12'>
-            <p className='lead'>Total ({products.length}) products</p>
-            <ul className='list-group'>
+            <p className='text-pink-600'>Total ({products.length}) products</p>
+            <ul className='my-2'>
               {products.map((product, pIndex) => (
                 <li
                   key={pIndex}
-                  className='list-group-item d-flex justify-content-between align-items-center'
+                  className='py-2 px-4 mb-4 bg-purple-200 flex justify-between items-center shadow-sm text-sm rounded-sm'
                 >
-                  <strong>{product.name}</strong>
-                  <div className='div d-flex justify-content-between align-items-center'>
+                  <p>{product.name}</p>
+
+                  <div className='flex justify-between items-center'>
                     <Link to={`/admin/product/update/${product._id}`}>
-                      <span className='btn btn-sm btn-warning'>Update</span>
+                      <span className='mr-2 py-1 bg-red-400 text-xs px-1 shadow rounded-sm text-red-100 hover:bg-red-500'>
+                        Update
+                      </span>
                     </Link>
                     <span
                       onClick={() => removeProduct(product._id)}
-                      className='btn btn-sm btn-danger ml-2'
+                      className='py-1 bg-blue-400 text-xs px-1 shadow rounded-sm text-blue-100 hover:bg-blue-500 cursor-pointer'
                     >
                       Trash
                     </span>
@@ -70,7 +71,7 @@ const ManageProducts = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 export default ManageProducts;
