@@ -119,7 +119,7 @@ const CreateProduct = () => {
           onChange={handleChange('name')}
           value={name}
           type='text'
-          className='w-full'
+          className='w-full text-gray-700 text-sm'
         />
       </div>
       <div className='mt-2'>
@@ -132,7 +132,7 @@ const CreateProduct = () => {
         <textarea
           onChange={handleChange('description')}
           value={description}
-          className='w-full'
+          className='w-full text-gray-700 text-sm'
         />
       </div>
       <div className='mt-2'>
@@ -146,7 +146,7 @@ const CreateProduct = () => {
           onChange={handleChange('price')}
           value={price}
           type='number'
-          className='w-full'
+          className='w-full text-gray-700 text-sm'
         />
       </div>
       <div className='mt-2'>
@@ -160,7 +160,7 @@ const CreateProduct = () => {
           onChange={handleChange('quantity')}
           value={quantity}
           type='number'
-          className='w-full'
+          className='w-full text-gray-700 text-sm'
         />
       </div>
       <div className='mt-2'>
@@ -170,7 +170,10 @@ const CreateProduct = () => {
         >
           Category
         </label>
-        <select onChange={handleChange('category')} className='w-full'>
+        <select
+          onChange={handleChange('category')}
+          className='w-full text-gray-700 text-sm'
+        >
           <option>Please select</option>
           {categories &&
             categories.map((c, index) => (
@@ -187,14 +190,17 @@ const CreateProduct = () => {
         >
           Shipping
         </label>
-        <select onChange={handleChange('shipping')} className='w-full'>
+        <select
+          onChange={handleChange('shipping')}
+          className='w-full text-gray-700 text-sm'
+        >
           <option>Please select</option>
           <option value='0'>No</option>
           <option value='1'>Yes</option>
         </select>
       </div>
-      <button className='py-2 px-2 bg-blue-600 text-white font-semibold  my-4 rounded text-sm'>
-        Create Product
+      <button className='py-2 px-2 bg-purple-600 text-white font-semibold  my-4 rounded text-sm'>
+        Update Product
       </button>
     </form>
   );

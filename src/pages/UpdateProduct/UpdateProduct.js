@@ -1,9 +1,9 @@
+import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 import { isAuthenticated } from 'api/auth';
 import { getCategories } from 'api/category';
 import { read, updateProduct } from 'api/product';
-import { Layout } from 'components';
-import React, { useEffect, useState } from 'react';
-import { Redirect } from 'react-router';
 
 const UpdateProduct = ({ match }) => {
   const [values, setValues] = useState({
@@ -121,55 +121,87 @@ const UpdateProduct = ({ match }) => {
 
   const productForm = () => (
     <form onSubmit={handleSubmit}>
-      <h5>Upload Photo</h5>
-      <div className='form-group'>
-        <label className='btn btn-secondary'>
-          <input
-            onChange={handleChange('photo')}
-            type='file'
-            name='photo'
-            accept='image/*'
-          />
+      <div className='mt-4'>
+        <label
+          className='block text-sm font-medium text-gray-900 mb-2'
+          for='product image'
+        >
+          Upload Photo
         </label>
+        <input
+          onChange={handleChange('photo')}
+          type='file'
+          name='photo'
+          accept='image/*'
+          className='block w-full cursor-pointer  bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-transparent text-sm'
+        />
       </div>
-      <div className='form-group mt-2'>
-        <label htmlFor='name'>Name</label>
+      <div className=' mt-2'>
+        <label
+          className='block text-sm font-medium text-gray-900 mb-2'
+          htmlFor='name'
+        >
+          Name
+        </label>
         <input
           onChange={handleChange('name')}
           value={name}
           type='text'
-          className='form-control'
+          className='w-full text-gray-700 text-sm'
         />
       </div>
-      <div className='form-group mt-2'>
-        <label htmlFor='descrition'>Description</label>
+      <div className='mt-2'>
+        <label
+          className='block text-sm font-medium text-gray-900 mb-2'
+          htmlFor='description'
+        >
+          Description
+        </label>
         <textarea
           onChange={handleChange('description')}
           value={description}
-          className='form-control'
+          className='w-full text-gray-700 text-sm'
         />
       </div>
-      <div className='form-group mt-2'>
-        <label htmlFor='name'>Price</label>
+      <div className='mt-2'>
+        <label
+          className='block text-sm font-medium text-gray-900 mb-2'
+          htmlFor='price'
+        >
+          Price
+        </label>
         <input
           onChange={handleChange('price')}
           value={price}
           type='number'
-          className='form-control'
+          className='w-full text-gray-700 text-sm'
         />
       </div>
-      <div className='form-group mt-2'>
-        <label htmlFor='name'>Quantity</label>
+      <div className='mt-2'>
+        <label
+          className='block text-sm font-medium text-gray-900 mb-2'
+          htmlFor='quantity'
+        >
+          Quantity
+        </label>
         <input
           onChange={handleChange('quantity')}
           value={quantity}
           type='number'
-          className='form-control'
+          className='w-full text-gray-700 text-sm'
         />
       </div>
-      <div className='form-group mt-2'>
-        <label htmlFor='category'>Category</label>
-        <select onChange={handleChange('category')} className='form-control'>
+      <div className='mt-2'>
+        <label
+          className='block text-sm font-medium text-gray-900 mb-2'
+          htmlFor='category'
+        >
+          Category
+        </label>
+        <select
+          onChange={handleChange('category')}
+          className='w-full text-gray-700 text-sm'
+        >
           <option>Please select</option>
           {categories &&
             categories.map((c, index) => (
@@ -180,26 +212,36 @@ const UpdateProduct = ({ match }) => {
         </select>
       </div>
       <div className='form-group mt-2'>
-        <label htmlFor='shipping'>Shipping</label>
-        <select onChange={handleChange('shipping')} className='form-control'>
+        <label
+          className='block text-sm font-medium text-gray-900 mb-2'
+          htmlFor='shipping'
+        >
+          Shipping
+        </label>
+        <select
+          onChange={handleChange('shipping')}
+          className='w-full text-gray-700 text-sm'
+        >
           <option>Please select</option>
           <option value='0'>No</option>
           <option value='1'>Yes</option>
         </select>
       </div>
-      <button className='btn btn-sm btn-dark mt-4'>Update Product</button>
+      <button className='py-2 px-2 bg-purple-600 text-white font-semibold  my-4 rounded text-sm'>
+        Update Product
+      </button>
     </form>
   );
 
   const showLoading = () =>
     loading && (
-      <div className='alert alert-info'>
-        <p className='lead'>Loading...</p>
+      <div className='py-1 px-4 bg-red-300 font-medium text-gray-900'>
+        <p>Loading...</p>
       </div>
     );
   const showSuccess = () => (
     <div
-      className='alert alert-success'
+      className='py-2 px-4 bg-green-200 font-medium text-gray-900'
       style={{ display: success ? '' : 'none' }}
     >
       Product updated successfully
@@ -207,7 +249,7 @@ const UpdateProduct = ({ match }) => {
   );
   const showError = () => (
     <div
-      className='alert alert-danger'
+      className='py-2 px-4 bg-red-300 font-medium text-black text-sm rounded'
       style={{ display: error ? '' : 'none' }}
     >
       {error}
@@ -220,25 +262,26 @@ const UpdateProduct = ({ match }) => {
       }
     }
   };
-  const goBack = () => {};
+  const goBack = () => (
+    <div className='mt-5 text-sm text-purple-500'>
+      <Link to='/admin/dashboard'>Back to Dashboard</Link>
+    </div>
+  );
 
   return (
-    <Layout
-      className='container mb-5'
-      title='Add new product'
-      description={`Hey ${foundUser.name}, ready to add new product`}
-    >
-      <div className='row'>
-        <div className='col-md-4 offset-4'>
+    <div className='px-8 py-8 mt-12 w-8/12 mx-auto'>
+      <h1 className='font-normal my-4'>{`Hey ${foundUser.name}, ready to update product`}</h1>
+      <div className='bg-white shadow px-12 py-2 rounded'>
+        <div>
           {showLoading()}
           {showSuccess()}
           {showError()}
           {productForm()}
-          {goBack()}
           {redirectUser()}
         </div>
       </div>
-    </Layout>
+      {goBack()}
+    </div>
   );
 };
 
