@@ -1,6 +1,5 @@
 import { isAuthenticated } from 'api/auth';
 import { read, update, updateUser } from 'api/user';
-import { Layout } from 'components';
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router';
 
