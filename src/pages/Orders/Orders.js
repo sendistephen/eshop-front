@@ -1,9 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from 'react';
 import { isAuthenticated } from 'api/auth';
 import { listOrders, getPaymentStatus, updateOrderStatus } from 'api/order';
-import { Layout } from 'components';
 import moment from 'moment';
-import { useEffect, useState } from 'react';
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -47,25 +46,30 @@ const Orders = () => {
   const showOrdersLength = () => {
     if (orders.length > 0) {
       return (
-        <h5 className='text-danger display-5'>Total orders:{orders.length}</h5>
+        <h1 className='text-2xl font-medium'>Total orders:{orders.length}</h1>
       );
     } else {
-      return <h5 className='text-danger'>No orders</h5>;
+      return <h5 className='text-sm text-gray-600'>No orders</h5>;
     }
   };
   const showInput = (key, value) => (
-    <div className='input-group mb-2 mr-sm-2'>
-      <div className='input-group-prepend'>
-        <div className='input-group-text'>{key}</div>
+    <div className='mb-2 mr-sm-2'>
+      <div className=''>
+        <div className='text-gray-500'>{key}</div>
       </div>
-      <input type='text' value={value} className='form-control' readOnly />
+      <input type='text' value={value} className='w-full py-1' readOnly />
     </div>
   );
   const showStatus = (order) => (
-    <div className='form-group'>
-      <h3 className='mark mb-4'>Status:{order.status}</h3>
+    <div className='my-2'>
+      <h3 className='inline-block mr-10 mb-2 font-medium uppercase text-gray-900 text-sm'>
+        Status
+      </h3>
+      <span className='py-1 px-2 text-sm bg-pink-500 text-pink-100'>
+        {order.status}
+      </span>
       <select
-        className='form-control'
+        className='w-full text-sm text-gray-600'
         onChange={(e) => handleStatusChange(e, order._id)}
       >
         <option>Update Status</option>
@@ -78,58 +82,67 @@ const Orders = () => {
     </div>
   );
   return (
-    <Layout
-      className='container '
-      title='Orders'
-      description={`Hey ${name}, you can manage all the orders here`}
-    >
-      <div className='row'>
-        <div className='col-md-8 offset-md-2'>
-          {showOrdersLength()}
-          {orders.map((order, i) => {
-            return (
-              <div
-                className='mt-5'
-                key={i}
-                style={{ borderBottom: '5px solid indigo' }}
-              >
-                <h4 className='bg-primary'>Order ID:{order._id}</h4>
-                <ul className='list-group mb-2'>
-                  <li className='list-group-item'>
-                    Status: {showStatus(order)}
-                  </li>
-                  <li className='list-group-item'>
-                    Transaction ID: {order.transaction_id}
-                  </li>
-
-                  <li className='list-group-item'>
-                    Delivery address: {order.address}
-                  </li>
-                  <li className='list-group-item'>
-                    Ordered on: {moment(order.createdAt).fromNow()}
-                  </li>
-                </ul>
-                <h3 className='mt-4 mb-4 font-italic'>
-                  Total products in the order:{order.products.length}
-                </h3>
-                {order.products.map((product, pIndex) => (
-                  <div
-                    className='mb-4'
-                    key={pIndex}
-                    style={{ padding: '20px', border: '1px solid lightgreen' }}
-                  >
-                    {showInput('Product name', product.name)}
-                    {showInput('Product price', product.price)}
-                    {showInput('Product total', product.count)}
-                    {showInput('Product Id', product._id)}
-                  </div>
-                ))}
+    <div className='px-8'>
+      <h1 className='text-black text-2xl my-8 text-center'>{`Hey ${name}, you can manage all the orders here`}</h1>
+      <div className='px-4 py-4 w-8/12 mx-auto bg-white shadow'>
+        {showOrdersLength()}
+        {orders.map((myOrder, i) => {
+          return (
+            <div className='mt-5' key={i}>
+              <div className='text-sm'>
+                <h4 className='inline py-1 px-2 bg-gray-300 border border-1 border-gray-500'>
+                  Order ID
+                </h4>
+                <span className='inline py-1 px-2 text-pink-500 ml-4 border border-1 border-pink-200'>
+                  {myOrder._id}
+                </span>
               </div>
-            );
-          })}
-        </div>
+              <ul className='mt-2'>
+                <li className='py-2'>
+                  <span>{showStatus(myOrder)}</span>
+                </li>
+                <li className='list-group-item'>
+                  <p className='font-medium uppercase text-gray-900 text-sm'>
+                    Transaction ID
+                  </p>
+                  <span className='text-sm text-pink-500'>
+                    {myOrder.transaction_id}
+                  </span>
+                </li>
+
+                <li className='mt-2'>
+                  <p className='font-medium uppercase text-gray-900 text-sm'>
+                    Delivery address
+                  </p>
+                  <span className='text-sm text-pink-500'>
+                    {myOrder.address}
+                  </span>
+                </li>
+                <li className='mt-2'>
+                  <p className='font-medium uppercase text-gray-900 text-sm'>
+                    Ordered on
+                  </p>
+                  <span className='text-sm text-pink-500'>
+                    {moment(myOrder.createdAt).fromNow()}
+                  </span>
+                </li>
+              </ul>
+              <h3 className='mt-4 mb-4 text-gray-900 font-bold'>
+                Total products in the order:{myOrder.products.length}
+              </h3>
+              {myOrder.products.map((product, pIndex) => (
+                <div className='mb-4' key={pIndex}>
+                  {showInput('Product Name', product.name)}
+                  {showInput('Product Price', product.price)}
+                  {showInput('Product Total', product.count)}
+                  {showInput('Product ID', product._id)}
+                </div>
+              ))}
+            </div>
+          );
+        })}
       </div>
-    </Layout>
+    </div>
   );
 };
 
