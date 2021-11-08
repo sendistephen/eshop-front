@@ -24,17 +24,22 @@ export default function Checkbox({ categories, handleFilters }) {
   return (
     <>
       {categories.map((category) => (
-        <li key={category.name} className='list-unstyled checkbox-list'>
+        <div class='flex items-center  mb-2'>
           <input
             onChange={handleToggle(category._id)}
             value={checked.indexOf(category._id === -1)}
+            id='checkbox-1'
+            aria-describedby='checkbox-1'
             type='checkbox'
-            className='form-check-input me-2'
+            class='bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded'
           />
-          <label htmlFor='' className='form-check-label'>
+          <label
+            for='checkbox-1'
+            class='text-sm ml-3 font-medium text-gray-900'
+          >
             {category.name}
           </label>
-        </li>
+        </div>
       ))}
     </>
   );

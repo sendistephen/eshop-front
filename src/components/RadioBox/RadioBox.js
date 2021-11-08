@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 export default function RadioBox({ prices, handleFilters }) {
+  // eslint-disable-next-line no-unused-vars
   const [value, setValue] = useState(0);
 
   const handleChange = (event) => {
@@ -11,15 +12,21 @@ export default function RadioBox({ prices, handleFilters }) {
   return (
     <>
       {prices.map((price, index) => (
-        <div key={index}>
+        <div class='flex items-center mb-2 -ml-4 mt-2'>
           <input
             onChange={handleChange}
             value={`${price._id}`}
-            name={price}
+            id='price'
             type='radio'
-            className='form-check-input'
+            name={price}
+            class='h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300'
+            aria-labelledby='price'
+            aria-describedby='price'
           />
-          <label htmlFor='name' className='form-check-label'>
+          <label
+            for='price'
+            class='text-sm font-medium text-gray-900 ml-2 block'
+          >
             {price.name}
           </label>
         </div>

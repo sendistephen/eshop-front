@@ -66,6 +66,7 @@ export default function Shop() {
   useEffect(() => {
     fetchCategories();
     loadFilteredResults(skip, limit, myFilters.filters);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleFilters = (filters, filterBy) => {
@@ -93,14 +94,12 @@ export default function Shop() {
   };
 
   return (
-    <Layout
-      title='Shop'
-      description='Search and find books of your choice.'
-      className='container'
-    >
-      <div className='row'>
-        <div className='col-2'>
-          <p className='font-weight-bold'>Filter by Categories</p>
+    <div className='mt-12 px-8'>
+      <div className='flex justify-between'>
+        <div className='w-2/12 mr-2 h-96 bg-white shadow px-4 rounded-lg'>
+          <p className='font-semibold mt-4 mb-1 text-purple-800 uppercase text-sm'>
+            Filter by Categories
+          </p>
           <ul>
             <Checkbox
               categories={categories}
@@ -108,7 +107,9 @@ export default function Shop() {
             />
           </ul>
 
-          <p className='font-weight-bold'>Filter by Prices</p>
+          <p className='font-semibold mt-4 text-purple-800 uppercase text-sm'>
+            Filter by Prices
+          </p>
           <div className='ml-4'>
             <RadioBox
               prices={prices}
@@ -116,11 +117,10 @@ export default function Shop() {
             />
           </div>
         </div>
-        <div className='col-10'>
-          <h4 className='mb-4'>Products</h4>
-          <div className='row'>
+        <div className='w-10/12'>
+          <div className='grid grid-cols-4 gap-3'>
             {filteredResults.map((product, i) => (
-              <div className='col-4 mb-3' key={i}>
+              <div className='mb-3' key={i}>
                 <Product product={product} />
               </div>
             ))}
@@ -129,6 +129,6 @@ export default function Shop() {
           {loadMoreButton()}
         </div>
       </div>
-    </Layout>
+    </div>
   );
 }
