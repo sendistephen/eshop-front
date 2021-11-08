@@ -1,6 +1,5 @@
 import { isAuthenticated } from 'api/auth';
 import { createCategory } from 'api/category';
-import { Layout } from 'components';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -33,8 +32,11 @@ const CreateCategory = () => {
 
   const categoryForm = () => (
     <form onSubmit={handleSubmit}>
-      <div className='form-group'>
-        <label htmlFor='name' className='text-muted'>
+      <div className=''>
+        <label
+          htmlFor='name'
+          className='text-muted block text-left text-gray-900 text-sm'
+        >
           Name
         </label>
         <input
@@ -43,18 +45,20 @@ const CreateCategory = () => {
           autoFocus
           required
           type='text'
-          className='form-control'
+          className='py-1 rounded text-sm text-gray-800'
         />
       </div>
-      <button className='btn btn-outline-secondary mt-3'>Create Category</button>
+      <button className='mt-3 text-sm bg-blue-500 px-2 text-white py-1 font-medium rounded'>
+        Create Category
+      </button>
     </form>
   );
 
   const showSuccess = () => {
     if (success) {
       return (
-        <div className='alert alert-success'>
-          <span className='text-success p-0'>Category is created</span>
+        <div className='py-2 px-2 bg-green-300 text-black text-sm font-semibold'>
+          <p>Category is created</p>
         </div>
       );
     }
@@ -62,25 +66,24 @@ const CreateCategory = () => {
   const showError = () => {
     if (error) {
       return (
-        <div className='alert alert-danger'>
-          <span className='text-danger p-0'>Category should be unique</span>
+        <div className='my-4 py-2 px-2 bg-red-300 text-black text-sm font-semibold rounded w-56'>
+          <p>Category should be unique</p>
         </div>
       );
     }
   };
 
   const goBack = () => (
-    <div className='mt-5'>
+    <div className='mt-5 text-sm text-purple-500'>
       <Link to='/admin/dashboard'>Back to Dashboard</Link>
     </div>
   );
   return (
-    <Layout
-      className='container '
-      title='Add new category'
-      description={`Hey ${foundUser.name}, ready to add new category`}
-    >
-      <div className='row'>
+    <div className='px-8'>
+      <div className='mt-8 text-gray-700'>
+        <h1>{`Hey ${foundUser.name}, ready to add new category`}</h1>
+      </div>
+      <div className='mt-8'>
         <div className='col-md-4 offset-4'>
           {showError()}
           {showSuccess()}
@@ -88,7 +91,7 @@ const CreateCategory = () => {
           {goBack()}
         </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 

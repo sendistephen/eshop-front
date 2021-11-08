@@ -9,23 +9,23 @@ const AdminDashboard = () => {
   const adminLinks = () => (
     <>
       <h5 className='font-bold my-4'>Admin Links</h5>
-      <div className='bg-white rounded-lg border border-gray-200 text-gray-900 font-medium text-sm mb-4'>
-        <li className='block px-4 py-2 border-b border-gray-200 w-full rounded-t-lg cursor-pointer'>
+      <div className='bg-white rounded-lg border border-gray-200 text-indigo-700 font-medium text-sm mb-4'>
+        <li className='block px-4 py-2 border-b border-gray-200 w-full rounded-t-lg cursor-pointer hover:text-gray-900'>
           <Link className='nav-link' to='/admin/category/create'>
             Create Category
           </Link>
         </li>
-        <li className='block px-4 py-2 border-b border-gray-200 w-full rounded-t-lg cursor-pointer'>
+        <li className='block px-4 py-2 border-b border-gray-200 w-full rounded-t-lg cursor-pointer hover:text-gray-900'>
           <Link className='nav-link' to='/admin/product/create'>
             Create Product
           </Link>
         </li>
-        <li className='block px-4 py-2 border-b border-gray-200 w-full rounded-t-lg cursor-pointer'>
+        <li className='block px-4 py-2 border-b border-gray-200 w-full rounded-t-lg cursor-pointer hover:text-gray-900'>
           <Link className='nav-link' to='/admin/orders'>
             View Orders
           </Link>
         </li>
-        <li className='block px-4 py-2 border-b border-gray-200 w-full rounded-t-lg cursor-pointer'>
+        <li className='block px-4 py-2 border-b border-gray-200 w-full rounded-t-lg cursor-pointer hover:text-gray-900'>
           <Link className='nav-link' to='/admin/products'>
             Manage Products
           </Link>
