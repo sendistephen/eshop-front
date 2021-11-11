@@ -5,7 +5,6 @@ import { ErrorMessage } from '@hookform/error-message';
 import { useToasts } from 'react-toast-notifications';
 import { signin, authenticate, isAuthenticated } from 'api/auth';
 import LoginCover from 'assets/bg-image.png';
-import Logo from 'assets/LOGO.png';
 
 const Signin = ({ history }) => {
   const [values, setValues] = useState({
@@ -68,16 +67,6 @@ const Signin = ({ history }) => {
         }}
       >
         <div className='p-8 md:mx-auto md:max-w-6xl md:h-full'>
-          {/* logo */}
-          <div className='flex flex-col justify-center items-center md:flex md:justify-start md:items-start'>
-            <Link to='/'>
-              <img
-                className='h-18 w-18 md:h-16 md:w-16'
-                src={Logo}
-                alt='eDuuka'
-              />
-            </Link>
-          </div>
           <div className='pt-10 md:grid md:grid-cols-2 w-full'>
             {/* content side */}
             <div className='w-full md:flex md:flex-col md:justify-center'>

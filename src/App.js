@@ -5,11 +5,13 @@ import { Routes } from 'Routes';
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <Navbar />
-      <Routes />
-    </Router>
+    <>
+      <Router>
+        <Header />
+        <Navbar />
+        <Routes />
+      </Router>
+    </>
   );
 }
 

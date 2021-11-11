@@ -1,8 +1,10 @@
+import { Link, useHistory } from 'react-router-dom';
 import { PhoneIcon } from '@heroicons/react/solid';
 import { isAuthenticated, signout } from 'api/auth';
-import { Link } from 'react-router-dom';
 
-const Header = ({ history }) => {
+const Header = () => {
+  const history = useHistory();
+
   return (
     <header className='py-1 px-8 bg-green-400'>
       <div className='flex justify-between items-center '>
