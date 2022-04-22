@@ -1,4 +1,4 @@
-import { API } from 'config';
+import { API } from '../../config';
 import React from 'react';
 
 const ProductImage = ({ item, url }) => {

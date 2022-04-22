@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { isAuthenticated } from 'api/auth';
-import { getCategories } from 'api/category';
-import { createProduct } from 'api/product';
+import { isAuthenticated } from '../../api/auth';
+import { getCategories } from '../../api/category';
+import { createProduct } from '../../api/product';
 import { Link } from 'react-router-dom';
 
 const CreateProduct = () => {

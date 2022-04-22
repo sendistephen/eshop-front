@@ -1,11 +1,11 @@
-import ProductImage from 'components/ProductImage';
+import ProductImage from '../../components/ProductImage';
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import {
   addProductToCart,
   updateItem,
   removeItem,
-} from 'components/Cart/CartHelpers';
+} from '../../helpers/CartHelpers';
 
 const Product = ({
   product,

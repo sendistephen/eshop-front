@@ -1,4 +1,4 @@
-import { API } from 'config';
+import { API } from '../../config';
 import queryString from 'query-string';
 
 export const createProduct = async (userId, token, product) => {

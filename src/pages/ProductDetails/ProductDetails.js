@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { read, listRelated } from 'api/product';
-import { Product, ProductImage } from 'components';
+import { read, listRelated } from '../../api/product';
+import { Product, ProductImage } from '../../components';
 
 const ProductDetails = (props) => {
   const [product, setProduct] = useState({});

@@ -1,4 +1,4 @@
-import { API } from 'config';
+import { API } from '../../config';
 
 // get user info
 export const read = async (userId, token) => {

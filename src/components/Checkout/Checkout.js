@@ -1,11 +1,12 @@
+import React from "react";
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'braintree-web';
 import DropIn from 'braintree-web-drop-in-react';
-import { isAuthenticated } from 'api/auth';
+import { isAuthenticated } from '../../api/auth';
 import { getBraintreeClientToken, processPayment } from '../../api/braintree';
-import { emptyCart } from 'components/Cart/CartHelpers';
-import { createOrder } from 'api/order';
+import { emptyCart } from '../../helpers/CartHelpers';
+import { createOrder } from '../../api/order';
 
 const Checkout = ({ products }) => {
   const [data, setData] = useState({

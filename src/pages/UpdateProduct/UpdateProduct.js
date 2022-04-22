@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
-import { isAuthenticated } from 'api/auth';
-import { getCategories } from 'api/category';
-import { read, updateProduct } from 'api/product';
+import { isAuthenticated } from '../../api/auth';
+import { getCategories } from '../../api/category';
+import { read, updateProduct } from '../../api/product';
 
 const UpdateProduct = ({ match }) => {
   const [values, setValues] = useState({

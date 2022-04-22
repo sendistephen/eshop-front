@@ -1,6 +1,7 @@
-import { getCategories } from 'api/category';
-import { list } from 'api/product';
-import Product from 'components/Product';
+import React from "react";
+import { getCategories } from '../../api/category';
+import { list } from '../../api/product';
+import Product from '../../components/Product';
 import { useEffect, useState } from 'react';
 
 export default function Search() {

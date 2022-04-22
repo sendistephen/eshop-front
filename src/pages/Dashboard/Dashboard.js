@@ -1,7 +1,7 @@
-import { isAuthenticated } from 'api/auth';
-import { getPurchaseHistory } from 'api/user';
-import moment from 'moment';
 import React, { useEffect, useState } from 'react';
+import { isAuthenticated } from '../../api/auth';
+import { getPurchaseHistory } from '../../api/user';
+import moment from 'moment';
 import { Link } from 'react-router-dom';
 
 const Dashboard = () => {

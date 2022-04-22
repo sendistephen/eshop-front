@@ -1,4 +1,4 @@
-import { API } from "config";
+import { API } from "../../config";
 
 export const createCategory = async (userId, token, category) => {
   try {

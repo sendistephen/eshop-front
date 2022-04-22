@@ -1,6 +1,6 @@
-import { isAuthenticated } from 'api/auth';
-import { createCategory } from 'api/category';
 import React, { useState } from 'react';
+import { isAuthenticated } from '../../api/auth';
+import { createCategory } from '../../api/category';
 import { Link } from 'react-router-dom';
 
 const CreateCategory = () => {

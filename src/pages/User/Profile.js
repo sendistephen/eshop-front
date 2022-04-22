@@ -1,5 +1,5 @@
-import { isAuthenticated } from 'api/auth';
-import { read, update, updateUser } from 'api/user';
+import { isAuthenticated } from '../../api/auth';
+import { read, update, updateUser } from '../../api/user';
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router';
 

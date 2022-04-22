@@ -1,6 +1,7 @@
+import React from "react";
 import { Link, useHistory } from 'react-router-dom';
 import { PhoneIcon } from '@heroicons/react/solid';
-import { isAuthenticated, signout } from 'api/auth';
+import { isAuthenticated, signout } from '../../api/auth';
 
 const Header = () => {
   const history = useHistory();

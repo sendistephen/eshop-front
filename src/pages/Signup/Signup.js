@@ -1,10 +1,10 @@
-import { isAuthenticated, signup } from 'api/auth';
 import React, { useState } from 'react';
+import { isAuthenticated, signup } from '../../api/auth';
 import { Link, Redirect } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import { useToasts } from 'react-toast-notifications';
-import LoginCover from 'assets/bg-image.png';
+import LoginCover from '../../assets/bg-image.png';
 
 function Signup() {
   const [values, setValues] = useState({
